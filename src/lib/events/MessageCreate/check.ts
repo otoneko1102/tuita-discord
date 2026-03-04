@@ -33,6 +33,11 @@ const handler: MessageCreateEvent = {
         `${message.author} 警告。唯一偽中国語使用可能`,
       );
       setTimeout(() => warning.delete().catch(() => {}), WARNING_MS);
+    } else {
+      const emojis = config.emojis;
+      for (const emoji of emojis) {
+        await message.react(emoji).catch(() => {});
+      }
     }
   },
 };
