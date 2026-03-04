@@ -9,11 +9,7 @@ import config from "../../config";
 
 const TOPIC_TAG = config.tag;
 
-async function replyTemp(
-  message: Message,
-  text: string,
-  ms = 5000,
-) {
+async function replyTemp(message: Message, text: string, ms = 5000) {
   const m = await message.reply(text);
   setTimeout(() => m.delete().catch(() => {}), ms);
 }
@@ -26,7 +22,11 @@ const command: Command = {
     if (!message.inGuild()) return;
 
     const member = message.member;
-    if (!member?.permissions.has(PermissionFlagsBits.ManageChannels) && (config?.ownerId && member?.id !== config.ownerId)) {
+    if (
+      !member?.permissions.has(PermissionFlagsBits.ManageChannels) &&
+      config?.ownerId &&
+      member?.id !== config.ownerId
+    ) {
       await replyTemp(message, "権限不足");
       return;
     }
@@ -60,9 +60,7 @@ const command: Command = {
         name: config.name,
         message: { content: `${TOPIC_TAG}\n${config.description}` },
       });
-      const reply = await message.reply(
-        `作成: ${newThread}`,
-      );
+      const reply = await message.reply(`作成: ${newThread}`);
       setTimeout(() => reply.delete().catch(() => {}), 5000);
       return;
     }
