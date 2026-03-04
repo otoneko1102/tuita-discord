@@ -12,8 +12,7 @@ const command: Command = {
     if (args.length > 0) {
       const target = commands.get(args[0].toLowerCase());
       if (!target) {
-        const m = await message.reply(`指令「${args[0]}」未存在`);
-        setTimeout(() => m.delete().catch(() => {}), 5000);
+        await message.reply(`指令「${args[0]}」未存在`);
         return;
       }
 

@@ -9,9 +9,8 @@ import config from "../../config";
 
 const TOPIC_TAG = config.tag;
 
-async function replyTemp(message: Message, text: string, ms = 5000) {
-  const m = await message.reply(text);
-  setTimeout(() => m.delete().catch(() => {}), ms);
+async function replyTemp(message: Message, text: string) {
+  await message.reply(text);
 }
 
 const command: Command = {
@@ -60,8 +59,7 @@ const command: Command = {
         name: config.name,
         message: { content: `${TOPIC_TAG}\n${config.description}` },
       });
-      const reply = await message.reply(`作成: ${newThread}`);
-      setTimeout(() => reply.delete().catch(() => {}), 5000);
+      await message.reply(`作成: ${newThread}`);
       return;
     }
 
@@ -89,10 +87,9 @@ const command: Command = {
 
     await textChannel.setTopic(newTopic);
     const state = toggled ? "有効化" : "無効化";
-    const reply = await message.reply(
+    await message.reply(
       `対多 **${state}**${targetChannel ? ` (${textChannel})` : ""}`,
     );
-    setTimeout(() => reply.delete().catch(() => {}), 5000);
   },
 };
 
