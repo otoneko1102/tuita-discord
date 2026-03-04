@@ -32,8 +32,8 @@ export function removes(content: string): string {
     .replace(/[　\u0020]/g, "");
 }
 
-// []() 形式のマスクリンクを検出する
-export const maskedLinkRegex: RegExp = /\[([^\]]*)\]\([^)]*\)/g;
+// []() 形式のマスクリンクを検出する（[] 非空・() 内は URL 形式のみ許可）
+export const maskedLinkRegex: RegExp = /\[([^\]]+)\]\(https?:\/\/[^\s)]+\)/g;
 
 // [text](url) の url 部分を除去してテキスト部分のみ残す
 export function stripMaskedLinkUrls(content: string): string {
