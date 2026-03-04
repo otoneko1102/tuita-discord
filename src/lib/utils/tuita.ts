@@ -36,7 +36,7 @@ export function removes(content: string): string {
 export const kanjiRegex: RegExp = /[\p{Ideographic}]/u;
 // 許可される記号
 export const allowedSymbols: string =
-  "｡､☆★♡♥%％○○□◇◆△▽▲▼■+×-÷＋╋✕－:：;；〒々〆⤴︎⤵︎←↓↑→#＃=|｜$＄¥￥＝ヶヵ々/／ー_＿^＾*＊~〜!?！？°。、「」（）'\"@()<>【】『』［］[]“”‘’〈〉《》〔〕｛｝{}〚〛〘〙〝〟«»‹›";
+  "｡､☆★♡♥%％○○□◇◆△▽▲▼■+×-÷＋╋✕－:：;；〒々〆⤴︎⤵︎←↓↑→#＃=|｜$＄¥￥＝ヶヵ々/／`ー_＿^＾*＊~〜!?！？°。、「」（）'\"@()<>【】『』［］[]“”‘’〈〉《》〔〕｛｝{}〚〛〘〙〝〟«»‹›";
 
 export function isOnlyKanji(input: string): boolean {
   input = removes(input);
