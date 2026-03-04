@@ -1,4 +1,4 @@
-import { Message, TextChannel, ThreadChannel } from "discord.js";
+import { Message, MessageFlags, TextChannel, ThreadChannel } from "discord.js";
 import type { PartialMessage } from "discord.js";
 import type { MessageUpdateEvent } from "../../types/MessageUpdateEvent.js";
 import { isTuitaEnabled, isOnlyKanji } from "../../utils/tuita.js";
@@ -40,6 +40,11 @@ const handler: MessageUpdateEvent = {
       );
       setTimeout(() => warning.delete().catch(() => {}), WARNING_MS);
     } else {
+      if (full.flags.has(MessageFlags.SuppressEmbeds)) {
+        await full
+          .edit({ flags: full.flags.bitfield & ~MessageFlags.SuppressEmbeds })
+          .catch(() => {});
+      }
       const emojis = config.emojis;
       for (const emoji of emojis) {
         await full.react(emoji).catch(() => {});

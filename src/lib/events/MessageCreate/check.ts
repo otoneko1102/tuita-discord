@@ -1,4 +1,4 @@
-import { Message, TextChannel, ThreadChannel } from "discord.js";
+import { Message, MessageFlags, TextChannel, ThreadChannel } from "discord.js";
 import type { MessageCreateEvent } from "../../types/MessageCreateEvent.js";
 import { isTuitaEnabled, isOnlyKanji } from "../../utils/tuita.js";
 import config from "../../../config";
@@ -34,6 +34,11 @@ const handler: MessageCreateEvent = {
       );
       setTimeout(() => warning.delete().catch(() => {}), WARNING_MS);
     } else {
+      if (message.flags.has(MessageFlags.SuppressEmbeds)) {
+        await message
+          .edit({ flags: message.flags.bitfield & ~MessageFlags.SuppressEmbeds })
+          .catch(() => {});
+      }
       const emojis = config.emojis;
       for (const emoji of emojis) {
         await message.react(emoji).catch(() => {});
