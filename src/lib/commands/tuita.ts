@@ -20,7 +20,7 @@ async function replyTemp(
 
 const command: Command = {
   name: "tuita",
-  description: `対多機能 有効化・無効化 [対象指定可能]`,
+  description: `機能 有効化・無効化 [対象指定可能]`,
   include: true,
   execute: async (message, args) => {
     if (!message.inGuild()) return;
@@ -56,12 +56,12 @@ const command: Command = {
 
     // フォーラム
     if (targetChannel instanceof ForumChannel) {
-      await targetChannel.threads.create({
-        name: "対多",
-        message: { content: TOPIC_TAG },
+      const newThread = await targetChannel.threads.create({
+        name: config.name,
+        message: { content: `${TOPIC_TAG}\n${config.description}` },
       });
       const reply = await message.reply(
-        `作成: ${targetChannel}`,
+        `作成: ${newThread}`,
       );
       setTimeout(() => reply.delete().catch(() => {}), 5000);
       return;
