@@ -1,0 +1,58 @@
+{
+  "name": "tuita",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "A starter for creating a TypeScript package.",
+  "author": "otoneko.",
+  "license": "MIT",
+  "homepage": "https://github.com/otoneko1102/tuita#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otoneko1102/tuita.git"
+  },
+  "bugs": {
+    "url": "https://github.com/otoneko1102/tuita/issues"
+  },
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./config": "./dist/config.mjs",
+    "./lib/commands/help": "./dist/lib/commands/help.mjs",
+    "./lib/commands/ping": "./dist/lib/commands/ping.mjs",
+    "./lib/commands/tuita": "./dist/lib/commands/tuita.mjs",
+    "./lib/eventLoader": "./dist/lib/eventLoader.mjs",
+    "./lib/events/MessageCreate/check": "./dist/lib/events/MessageCreate/check.mjs",
+    "./lib/events/MessageUpdate/check": "./dist/lib/events/MessageUpdate/check.mjs",
+    "./lib/handler": "./dist/lib/handler.mjs",
+    "./lib/utils/customIdToArgs": "./dist/lib/utils/customIdToArgs.mjs",
+    "./lib/utils/tuita": "./dist/lib/utils/tuita.mjs",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "format": "prettier --write .",
+    "start": "node ./dist/index.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "bumpp": "^10.3.2",
+    "prettier": "^3.8.1",
+    "tsdown": "^0.18.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16"
+  },
+  "dependencies": {
+    "consola": "^3.4.2",
+    "discord.js": "^14.25.1",
+    "dotenv": "^17.3.1"
+  }
+}
