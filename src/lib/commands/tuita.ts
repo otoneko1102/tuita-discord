@@ -57,7 +57,7 @@ const command: Command = {
     // フォーラム
     if (targetChannel instanceof ForumChannel) {
       await targetChannel.threads.create({
-        name: TOPIC_TAG,
+        name: "対多",
         message: { content: TOPIC_TAG },
       });
       const reply = await message.reply(
