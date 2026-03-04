@@ -19,8 +19,35 @@ cp .env.example .env
 生成、起動:
 
 ```bash
+# 依存関係
+npm install
+
+# 生成
 npm run build
+
+# 起動
 npm run start
+```
+
+常時起動:
+
+```bash
+npm install -g pm2
+# 起動
+pm2 start ecosystem.config.cjs
+
+# 再起動
+pm2 restart tuita
+
+# 停止
+pm2 stop tuita
+
+# 確認
+pm2 logs tuita
+
+# 鯖再起動後、自動起動
+pm2 save
+pm2 startup
 ```
 
 ## 使用
