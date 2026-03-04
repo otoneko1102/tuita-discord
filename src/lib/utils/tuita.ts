@@ -32,6 +32,14 @@ export function removes(content: string): string {
     .replace(/[　\u0020]/g, "");
 }
 
+// []() 形式のマスクリンクを検出する
+export const maskedLinkRegex: RegExp = /\[([^\]]*)\]\([^)]*\)/g;
+
+// [text](url) の url 部分を除去してテキスト部分のみ残す
+export function stripMaskedLinkUrls(content: string): string {
+  return content.replace(maskedLinkRegex, "$1");
+}
+
 // 漢字のUnicode範囲
 export const kanjiRegex: RegExp = /[\p{Ideographic}]/u;
 // 許可される記号
@@ -39,7 +47,7 @@ export const allowedSymbols: string =
   "｡､☆★♡♥%％○○□◇◆△▽▲▼■+×-÷＋╋✕－:：;；〒々〆⤴︎⤵︎←↓↑→#＃=|｜$＄¥￥＝ヶヵ々/／`ー_＿^＾*＊~〜!?！？°。、「」（）'\"@()<>【】『』［］[]“”‘’〈〉《》〔〕｛｝{}〚〛〘〙〝〟«»‹›";
 
 export function isOnlyKanji(input: string): boolean {
-  input = removes(input);
+  input = removes(stripMaskedLinkUrls(input));
 
   for (const char of input) {
     if (
