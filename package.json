@@ -27,8 +27,6 @@
     "./lib/utils/tuita": "./dist/lib/utils/tuita.mjs",
     "./package.json": "./package.json"
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
   "files": [
     "dist"
@@ -40,15 +38,18 @@
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "format": "prettier --write .",
-    "start": "node ./dist/index.mjs"
+    "start": "node ./dist/index.mjs",
+    "versioncheck": "ncu",
+    "up": "ncu -u && npm install"
   },
   "devDependencies": {
-    "@types/node": "^25.0.3",
-    "bumpp": "^10.3.2",
+    "@types/node": "^25.3.3",
+    "bumpp": "^10.4.1",
+    "npm-check-updates": "^19.6.3",
     "prettier": "^3.8.1",
-    "tsdown": "^0.18.1",
+    "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "consola": "^3.4.2",
