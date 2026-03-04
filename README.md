@@ -50,7 +50,7 @@ pm2 save
 pm2 startup
 ```
 
-## 使用
+## 導入
 
 https://discord.com/oauth2/authorize?client_id=1478588627478118481
 
